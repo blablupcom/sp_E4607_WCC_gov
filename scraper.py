@@ -109,7 +109,6 @@ for year_link in year_links:
         for link in links:
             url = 'http://data.wolverhampton.gov.uk' + link['href']
             csvfiles = url.split('spend-')[1].split('-financial-year')[0].split('financial-year-')[-1]
-            print csvfiles
             csvYr = '20' + csvfiles[5:7]
             if '-2015' in csvfiles:
                 csvYr = csvfiles[-4:]
@@ -129,7 +128,7 @@ for row in data:
     valid = validate(filename, file_url)
 
     if valid == True:
-        scraperwiki.sqlite.save(unique_keys=['f'], data={"l": file_url, "f": filename, "d": todays_date })
+        scraperwiki.sqlite.save(unique_keys=['l'], data={"l": file_url, "f": filename, "d": todays_date })
         print filename
     else:
         errors += 1
@@ -139,3 +138,4 @@ if errors > 0:
 
 
 #### EOF
+
